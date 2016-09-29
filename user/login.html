@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="x5-fullscreen" content="true"/>
+<meta name="full-screen" content="yes"/>
+<title>欢迎登录</title>
+<link rel="stylesheet" type="text/css" href="../style/index.css" />
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+</head>
+<style type="text/css">
+	body{overflow:hidden;background:#fff;}
+	.userPic{width:30%;margin:.6rem auto 0;}
+	.tabBox{margin:1rem auto;}
+	.int{width:100%;margin:.2rem auto 0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;}
+	.int>input{height:.4rem;width:100%;padding-left:.2rem;border:none;font-size:.14rem;}
+	form{margin-top:.6rem;}
+	input#sm{border:none;outline:none;background:#f93;display:block;width:94%;height:.5rem;border-radius:.1rem;color:#fff;font-size:.16rem;font-weight:bold;margin:.4rem auto;}
+	.regBox{text-align:center;font-size:.14rem;}
+	.regBox>a{margin:0 .1rem;}
+</style>
+<body>
+	<article>
+		<div class="userPic"><img src="../images/userPic.jpg" /></div>
+		<div>
+			<form action="yzLogin.php" method="post">
+				<div class="int">
+					<input type="text" name="username" id="username" placeholder="用户名" />
+				</div>
+				<div class="int">
+					<input type="password" name="password" id="password" placeholder="密码" />
+				</div>
+				<input type="submit" value="登录" id="sm" />								
+			</form>
+		</div>
+		<div class="regBox">
+			<a href="reg.html">注册</a>
+			|
+			<a href="">忘记密码</a>
+		</div>
+	</article>
+</body>
+</html>

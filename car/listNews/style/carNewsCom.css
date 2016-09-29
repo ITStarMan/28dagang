@@ -1,0 +1,22 @@
+	.block{display:block;}
+	/*head*/
+	header{height:.5rem;line-height:.5rem;background:#f93;position:fixed;top:0;width:100%;z-index:100;text-align:center;}
+	.shit{width:.4rem;height:.4rem;position:absolute;left:.1rem;top:.05rem;}
+	.shit>img{vertical-align:top;}
+	.inBlock{display:inline-block;}
+	.topBox{height:.9rem;}
+	.textTop{
+		height:.4rem;
+		width:100%;
+		line-height:.4rem;
+		background:#fff;
+		position:fixed;
+		top:.5rem;
+		z-index:100;
+	}
+	.texLit{font-size:.2rem;color:#fff;font-weight:bold;}
+	.lastStep{width:.2rem;float:left;}
+	.textTop>h1{font-size:.14rem;margin-left:.2rem;float:left;}
+	.text{background:#ededed;padding:0 .2rem .1rem;font-size:.14rem;}
+	.text p{text-indent:2em;}
+	.carTextImg{width:100%;margin:.1rem 0;}

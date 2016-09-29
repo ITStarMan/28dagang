@@ -1,0 +1,21 @@
+
+	/*head*/
+	header{height:.5rem;line-height:.5rem;background:#f93;position:fixed;top:0;width:100%;z-index:100;text-align:center;}
+	header img{vertical-align:top;}
+	.login{width:.26rem;height:.26rem;position:absolute;left:.1rem;top:.12rem;}
+	.add{width:.26rem;height:.26rem;position:absolute;right:.1rem;top:.12rem;}
+	.inBlock{display:inline-block;}
+	.texLit{font-size:.2rem;color:#fff;font-weight:bold;}
+	.top{height:.9rem;}
+	.link{
+		background:#fff;
+		position:fixed;
+		top:.5rem;
+		width:100%;
+		z-index:100;
+		-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);
+	    -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+	    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+	}
+	.linkList{float:left;width:20%;height:.4rem;line-height:.4rem;font-size:.16rem;text-align:center;}
+	.action{color:#f93;font-weight:bold;}

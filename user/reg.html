@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="x5-fullscreen" content="true"/>
+<meta name="full-screen" content="yes"/>
+<title>欢迎注册</title>
+<link rel="stylesheet" type="text/css" href="../style/index.css" />
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+</head>
+<style type="text/css">
+	body{overflow:hidden;background:#fff;}
+	.userPic{width:30%;margin:.6rem auto 0;}
+	.tabBox{margin:1rem auto;}
+	.int{position:relative;width:100%;margin:.2rem auto 0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;}
+	.int>input{height:.4rem;width:100%;padding-left:.2rem;border:none;font-size:.14rem;}
+	.int>span{position:absolute;top:.1rem;right:.1rem;color:#ccc;}
+	form{margin-top:.6rem;}
+	input#sm{border:none;outline:none;background:#f93;display:block;width:94%;height:.5rem;border-radius:.1rem;color:#fff;font-size:.16rem;font-weight:bold;margin:.4rem auto;}
+	span.red{color:#f00;}
+	span.green{color:#090;}
+</style>
+<body>
+	<article>
+		<div class="userPic"><img src="../images/userPic.jpg" /></div>
+		<div>
+			<form action="regUser.php" method="post" onSubmit="validate();">
+				<div class="int">
+					<input type="text" name="username" id="username" placeholder="用户名" onBlur="checkusername();" />
+					<span id="usernameYz">6-12位汉字英文或数字</span>
+				</div>
+				<div class="int">
+					<input type="password" name="password" id="password" placeholder="密码" />
+					<span id="pwdYz"></span>
+				</div>
+				<div class="int">
+					<input type="password" placeholder="确认密码" id="qrPwd" onBlur="checkpwd();" />
+					<span></span>
+				</div>
+				<input type="submit" value="注册" id="sm" />								
+			</form>
+		</div>
+	</article>
+</body>
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	var username=document.getElementById("username");
+	var password=document.getElementById("password");
+	var qrPwd=document.getElementById("qrPwd");
+	var usernameYz=document.getElementById("usernameYz");
+	var pwdYz=document.getElementById("pwdYz");
+	var input=document.getElementsByTagName("input");
+	var tishi=document.getElementsByTagName("span");
+	var sm=document.getElementById("sm");
+	var p1=0;
+	for(var i=0;i<input.length-1;i++){
+		input[i].index=i;
+		input[i].onfocus=function(){
+			tishi[this.index].innerHTML="";
+			tishi[this.index].className="";
+		}
+	}
+	function validate(){
+		if(username.value==""){
+			usernameYz.innerHTML="用户名不能为空";
+			usernameYz.className="red";
+			event.returnValue=false;
+		}
+		if(password.value==""){
+			pwdYz.innerHTML="密码不能为空";
+			pwdYz.className="red";
+			event.returnValue=false;
+		}
+		if(password.value != qrPwd.value){
+			pwdYz.innerHTML="两次密码不一致";
+			pwdYz.className="red";
+			event.returnValue=false;
+		}
+	} 
+	function checkusername(){
+	    /*var regex=/^(\w|[\u4E00-\u9FA5]){6,12}$/;
+	    var s=username.value;
+	    if(regex.exec(s)==null){
+	    	usernameYz.innerHTML="用户名不正确";
+			usernameYz.className="red";
+		    sm.disabled="disabled";
+	    }else{
+	    	$.ajax({
+	    		url:'./yzUserName.php',
+	    		data:{
+	    			username:s,
+	    		},
+	    		type:'GET',
+	    		dataType:'text',
+	    		success:function(data){
+	    			if(data=="1"){
+	    				usernameYz.innerHTML="用户名被占用";
+						usernameYz.className="red";
+					    sm.disabled="disabled";
+	    			}else if(data=="0"){
+	    				usernameYz.innerHTML="用户名可以使用";
+						usernameYz.className="green";
+					    sm.disabled="";
+	    			}
+	    		},
+	    	});
+	    }*/	
+	    var s=username.value;
+	    var reg = /^(\w|[\u4E00-\u9FA5]){2,12}$/;
+	    if(arr=s.match(reg)){   
+			$.ajax({
+		    	url:'./yzUserName.php',
+		    	data:{
+		    		username:s,
+		    	},
+		    	type:'GET',
+		    	dataType:'text',
+		    	success:function(data){
+		    		if(data=="1"){
+		    			usernameYz.innerHTML="用户名被占用";
+						usernameYz.className="red";
+						sm.disabled="disabled";
+		    		}else if(data=="0"){
+		    			usernameYz.innerHTML="用户名可以使用";
+						usernameYz.className="green";
+						sm.disabled="";
+		    		}
+		    	},
+		    });      
+		}   
+		else   {   
+			alert("用户名只允许为英文，数字或汉字,请检查是否前后有空格或者其他符号");   
+			usernameYz.innerHTML="用户名不正确";
+			usernameYz.className="red";
+		    sm.disabled="disabled";    
+		}
+	}
+	function checkpwd(){
+		if(password.value != qrPwd.value){
+			pwdYz.innerHTML="两次密码不一致";
+			pwdYz.className="red";
+		}else{
+			pwdYz.innerHTML="两次密码一致";
+			pwdYz.className="green";
+		}
+	}
+</script>
+</html>

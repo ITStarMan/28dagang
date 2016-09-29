@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html>
+<head>   
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="x5-fullscreen" content="true"/>
+<meta name="full-screen" content="yes"/>   
+<title>28大杠-欢乐直通车</title>   
+<link rel="stylesheet" type="text/css" href="../style/index.css">
+<style type="text/css">
+	header{
+		height:.5rem;
+		width:100%;
+		background:#f93;
+		position:relative;
+		text-align:center;
+	}
+	.trunOff{
+		width:.2rem;
+		height:.2rem;
+		position:absolute;
+		top:.15rem;
+		left:.1rem;
+	}
+	header>h2{
+		color:#fff;
+		font-size:.16rem;
+		line-height:.5rem;
+		font-weight:bold;
+	}
+	.send{
+		position:absolute;
+		top:.04rem;	
+		right:0;
+		font-size:.16rem;
+		color:#fff;
+		padding:.1rem;
+	}
+	form{
+		width:100%;
+		background:#fff;
+	}
+	form textarea{
+		width:90%;
+		margin:.2rem 5%;
+		border:none;
+		height:2rem;
+		font-size:.14rem;
+	}
+</style>
+</head>
+<body>
+    <header>
+    	<a href="javascript:history.back()" style="display:block">
+    		<div class="trunOff"><img src="../images/leftWhite.png" /></div>
+    	</a> 
+    	<h2>发表留言</h2>
+    	<p class="send" id="send">发表</p>   	
+    </header>
+    <form>
+    	<textarea id="content">
+    	
+    	</textarea>
+    </form>   
+</body>
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	var send=document.getElementById("send");
+	var content=document.getElementById("content");
+	send.onclick=function(){
+		$.ajax({
+			url:'sendMes.php',
+			type:'GET',
+			dataType:'text',
+			data:{
+				content:content.value,
+			},
+			success:function(data){
+				if(data=="true"){
+					alert("发表成功！");
+					location.href="../messageBoard/messageBoard.html";
+				}else if(data=="false"){
+					alert("发表失败，请重试！");
+					location.href="sendMes.html";
+				}
+			},
+		});
+	}
+</script>
+</html>

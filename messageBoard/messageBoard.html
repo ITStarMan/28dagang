@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>   
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="x5-fullscreen" content="true"/>
+<meta name="full-screen" content="yes"/>    
+<title>28大杠-欢乐直通车</title>   
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<link rel="stylesheet" type="text/css" href="../style/index.css" />
+<link rel="stylesheet" type="text/css" href="../style/head.css" />
+<style type="text/css">
+	.mesUl{
+		padding:0 .1rem .1rem;
+	}
+	.mesUl>li{
+		background:#fff;
+		margin-top:.1rem;
+		padding:.1rem;
+		border-radius:.06rem;
+		-webkit-box-shadow:5px 5px 5px rgba(0,0,0,0.2);
+	      -moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+	      box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+	}
+	.mesUl>li p{
+		display:inline-block;
+		margin-right:.1rem;
+	}
+	.mesUl>li>span{
+		float:right;
+	}
+	.mesUl>li>div{
+		margin-top:.2rem;
+	}
+</style>
+</head>
+<body>
+    <article>
+    	<header>
+	   		<a class="add" style="display:block" href="" id="add"><img src="../images/add.png" /></a>
+	   		<h1 class="texLit inBlock">28大杠</h1>
+	   		<a href="" style="display:block" id="linkBtn">
+	            <div class="login"><img src="../images/login.png" id="login" /></div>
+	        </a>	        
+	   	</header>
+	   	<section class="top">
+	   		<ul class="link clx">
+	   			<li class="linkList"><a href="../hotText/hotText.html">热门</a></li>
+	   			<li class="linkList"><a href="../hotImg/hotImg.html">热图</a></li>
+	   			<li class="linkList"><a href="../car/carNews.html">汽车</a></li>
+	   			<li class="linkList"><a href="../game/gameNews.html">游戏</a></li>
+	   			<li class="linkList"><a href="" class="action">留言</a></li>
+	   		</ul>
+	   	</section>
+	   	<div>
+	   		<ul class="mesUl" id="mesUl">
+	   		</ul>
+	   	</div>
+    </article>
+</body>
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../js/btnCheck.js"></script>
+<script type="text/javascript">
+	var ul=document.getElementById("mesUl");
+	var page=1;
+	function showList(page){
+		$.ajax({
+		    url:'gitList.php',
+		    type:'GET',
+		    data:{
+		    	page:page,
+		    },
+		    dataType:'JSON',
+		    success:function(data){
+		    	for(var i=0;i<data.length;i++){
+		    		var li=document.createElement("li");
+		    		var p2=document.createElement("p");
+		    		var floor=document.createElement("span");
+		    		var lou=document.createElement("span");
+		    		var p3=document.createElement("p");
+		    		var sp=document.createElement("span");
+		    		var aDiv=document.createElement("div");
+		    		ul.appendChild(li);
+		    		li.appendChild(p2);
+		    		p2.appendChild(floor);
+		    		p2.appendChild(lou);
+		    		li.appendChild(p3);
+		    		li.appendChild(sp);
+		    		li.appendChild(aDiv);
+		    		floor.innerHTML=data[i].floors;
+		    		lou.innerHTML="楼";
+		    		p3.innerHTML=data[i].username;
+		    		sp.innerHTML=data[i].time;
+		    		aDiv.innerHTML=data[i].content;
+		    	}
+		    },
+		});
+	}
+	showList(page);
+
+	$(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+                page++;
+                showList(page);
+            }
+        });
+    });
+</script>
+</html>
