@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>   
+<meta charset="utf-8">   
+<title>发表汽车文章</title>   
+<style type="text/css">
+	form{
+		text-align:center;
+		margin-top:100px;
+	}
+	form>div{
+		margin-bottom:20px;
+	}
+</style>
+</head>
+<body>
+    <form method="get" action="api/sendCarNews.php">
+    	<div>
+    		<label>文章标题：</label>
+    		<input type="text" name="carTitle" id="carTitle" />
+    	</div>
+    	<div>
+    		<label>图片地址：</label>
+    		<input type="text" name="picUrl" id="picUrl" />
+    	</div>
+    	<div>
+    		<label>发表时间：</label>
+    		<input type="text" name="sendTime" id="sendTime" />
+    	</div>
+    	<div>
+    		<label>链接地址：</label>
+    		<input type="text" name="url" id="url" />
+    	</div>
+    	<div>发表时间格式为0000-00-00</div>
+    	<div>图片地址格式为../car/images/xx.jpg</div>
+    	<div>链接地址格式为listNews/文件夹名/xx.html</div>
+    	<input type="submit" value="发布" />
+    </form>
+</body>
+</html>
