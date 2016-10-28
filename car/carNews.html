@@ -38,39 +38,61 @@
 	   		</ul>
 	   	</section>
 	   	<section>
-	   		<ul class="carUl">
-	   			<li class="carList">
-	   				<a href="listNews/list1/list1.html" class="clx">
-	   					<div class="carImg"><img src="images/180x135_0_q30_autohomecar__wKjByFfCl0GAd-XJAAHqjplLjKM428.jpg" /></div>
-	   					<h4 class="newLab">买车不后悔，我们应该问自己哪些问题？</h4>
-	   					<time class="newTime">2016-08-28</time>
-	   				</a>
-	   			</li>
-	   			<li class="carList">
-	   				<a href="listNews/list2/list2.html" class="clx">
-	   					<div class="carImg"><img src="images/180x135_0_q30_autohomecar__wKgFW1fCp82AZZu4AAFOCcV_hFM744.jpg" /></div>
-	   					<h4 class="newLab">被“税”才喊爹，买车最易忽视的竟是…</h4>
-	   					<time class="newTime">2016-08-28</time>
-	   				</a>
-	   			</li>
-	   			<li class="carList">
-	   				<a href="listNews/list3/list3.html" class="clx">
-	   					<div class="carImg"><img src="images/180x135_0_q30_autohomecar__wKgHz1fClOyAY3tEAAJvMdTAVFY037.jpg" /></div>
-	   					<h4 class="newLab">为了家人，应该选7座SUV还是MPV？</h4>
-	   					<time class="newTime">2016-08-28</time>
-	   				</a>
-	   			</li>
-	   			<li class="carList">
-	   				<a href="listNews/list4/list4.html" class="clx">
-	   					<div class="carImg"><img src="images/180x135_0_q30_autohomecar__wKgFXFe_4I6AdySVAAGKP209Ay0672.jpg" /></div>
-	   					<h4 class="newLab">雨神也没辙 应对高温我们要做这些准备</h4>
-	   					<time class="newTime">2016-08-28</time>
-	   				</a>
-	   			</li>
+	   		<ul class="carUl" id="carUl">	   			
 	   		</ul>
 	   	</section>
     </article>
 </body>
 <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="../js/btnCheck.js"></script>
+<script type="text/javascript">
+	var ul=document.getElementById("carUl");
+	var page=1;
+	function showList(page){
+		$.ajax({
+		    url:'getList.php',
+		    type:'GET',
+		    data:{
+		    	page:page,
+		    },
+		    dataType:'JSON',
+		    success:function(data){
+		    	console.log(data);
+		    	for(var i=0;i<data.length;i++){
+		    		var li=document.createElement("li");
+		    		var a=document.createElement("a");
+		    		var div=document.createElement("div");
+		    		var img=document.createElement("img");
+		    		var h4=document.createElement("h4");
+		    		var time=document.createElement("time");
+		    		ul.appendChild(li);
+		    		li.appendChild(a);
+		    		a.appendChild(div);
+		    		a.appendChild(h4);
+		    		a.appendChild(time);
+		    		div.appendChild(img);
+		    		li.className="carList";
+		    		a.className="clx";
+		    		div.className="carImg";
+		    		h4.className="newLab";
+		    		time.className="newTime";
+		    		a.setAttribute('href',data[i].url);
+		    		img.setAttribute('src',data[i].picUrl);
+		    		h4.innerHTML=data[i].title;
+		    		time.innerHTML=data[i].time;
+		    	}
+		    },
+		});
+	}
+	showList(page);
+
+	$(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+                page++;
+                showList(page);
+            }
+        });
+    });
+</script>
 </html>

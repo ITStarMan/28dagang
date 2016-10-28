@@ -4,17 +4,17 @@
 <meta charset="utf-8">   
 <title>发表汽车文章</title>   
 <style type="text/css">
-	form{
+	#oDiv{
 		text-align:center;
 		margin-top:100px;
 	}
-	form>div{
+	#oDiv>div{
 		margin-bottom:20px;
 	}
 </style>
 </head>
 <body>
-    <form method="get" action="api/sendCarNews.php">
+    <div id="oDiv">
     	<div>
     		<label>文章标题：</label>
     		<input type="text" name="carTitle" id="carTitle" />
@@ -34,7 +34,37 @@
     	<div>发表时间格式为0000-00-00</div>
     	<div>图片地址格式为../car/images/xx.jpg</div>
     	<div>链接地址格式为listNews/文件夹名/xx.html</div>
-    	<input type="submit" value="发布" />
-    </form>
+    	<input type="button" value="发布" id="commit" />
+    </div>
 </body>
+<script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    var title=document.getElementById("carTitle");
+    var picUrl=document.getElementById("picUrl");
+    var sendTime=document.getElementById("sendTime");
+    var url=document.getElementById("url");
+    var commit=document.getElementById("commit");
+    commit.onclick=function(){
+        $.ajax({
+            url:'api/sendCarNews.php',
+            type:'GET',
+            dataType:'text',
+            data:{
+                carTitle:title.value,
+                picUrl:picUrl.value,
+                sendTime:sendTime.value,
+                url:url.value
+            },
+            success:function(data){
+                if(data=="true"){
+                    alert("发表成功！");
+                    location.href="sendCar.html";
+                }else if(data=="false"){
+                    alert("发表失败，请重试！");
+                    location.href="sendCar.html";
+                }
+            },
+        });
+    }
+</script>
 </html>

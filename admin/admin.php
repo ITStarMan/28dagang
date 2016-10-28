@@ -14,5 +14,6 @@
 		echo "<script type='text/javascript'>location.href='index.html';</script>";	
 		}
 	?>
+	<a href="send/sendCar.html">发布汽车文章</a>
 </body>
 </html>
