@@ -20,12 +20,17 @@
       -webkit-box-shadow:5px 5px 5px rgba(0,0,0,0.2);
       -moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
       box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+	  clear: both;
+	  display: block; 
+	  height: 0; 
+	  visibility: hidden; 
+	  content: "";
    }
 	.userList:last-child{margin-bottom:.1rem;}
 	.userInfo{height:.4rem;line-height:.4rem;}
-	.userPic{width:.4rem;height:.4rem;border-radius:.4rem;margin-left:.2rem;overflow:hidden;}
+	.userPic{width:.4rem;height:.4rem;border-radius:.4rem;margin-left:.2rem;overflow:hidden;float:left;}
 	.userPic>img{vertical-align:top;}
-	.userName{font-size:.16rem;margin-left:.2rem;}
+	.userName{font-size:.16rem;margin-left:.2rem;float:left;}
 	/*用户留言*/
 	.userText{padding:.1rem .2rem;font-size:.16rem;}
 </style>
@@ -49,8 +54,8 @@
    		</ul>
    	</section>
    	<section>
-   		<ul class="textUl">
-   			<li class="userList clx">
+   		<ul class="textUl" id="oUl">
+   			<!--<li class="userList">
    				<div class="userInfo">
    					<div class="userPic fl"><img src="../images/user.jpg" /></div>
    					<p class="userName fl">28大杠官方</p>
@@ -103,11 +108,60 @@
    				<div class="userText">
    					<p>同事想换剃须刀很久了，老婆一直没批准，最近换了一个新的剃须刀，于是问他：你老婆把钱管的不是很紧吗，哪来钱换的。他说，他跟老婆说那个剃须刀是前女友买的，于是被他老婆摔的粉碎，批准他买了一个新的。</p>
    				</div>
-   			</li>
+   			</li>-->
    		</ul>
    	</section>
    </article> 
 </body>
 <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="../js/btnCheck.js"></script>
+<script>		
+	var ul=document.getElementById("oUl");
+	var page=1;
+	function showList(page){
+		$.ajax({
+		    url:'gitList.php',
+		    type:'GET',
+		    data:{
+		    	page:page,
+		    },
+		    dataType:'JSON',
+		    success:function(data){
+		    	for(var i=0;i<data.length;i++){
+		    		var li=document.createElement("li");
+		    		var div1=document.createElement("div");
+		    		var div11=document.createElement("div");
+		    		var img=document.createElement("img");
+		    		var p1=document.createElement("p");
+		    		var div2=document.createElement("div");
+		    		var p2=document.createElement("p");
+		    		ul.appendChild(li);
+		    		li.appendChild(div1);
+		    		div1.appendChild(div11);
+		    		div11.appendChild(img);
+		    		div1.appendChild(p1);
+		    		li.appendChild(div2);
+		    		div2.appendChild(p2);
+		    		p2.innerHTML=data[i].context;
+		    		li.className="userList";
+					div1.className="userInfo";
+					div11.className="userPic";
+					img.setAttribute('src','../images/user.jpg');
+					p1.className="userName";
+					div2.className="userText";
+		    	}
+		    },
+		});
+	}
+	showList(page);
+
+	$(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+                page++;
+                showList(page);
+            }
+        });
+    });
+</script>
 </html>
