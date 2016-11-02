@@ -20,11 +20,6 @@
       -webkit-box-shadow:5px 5px 5px rgba(0,0,0,0.2);
       -moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
       box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
-	  clear: both;
-	  display: block; 
-	  height: 0; 
-	  visibility: hidden; 
-	  content: "";
    }
 	.userList:last-child{margin-bottom:.1rem;}
 	.userInfo{height:.4rem;line-height:.4rem;}
@@ -120,7 +115,7 @@
 	var page=1;
 	function showList(page){
 		$.ajax({
-		    url:'gitList.php',
+		    url:'getList.php',
 		    type:'GET',
 		    data:{
 		    	page:page,
@@ -143,6 +138,7 @@
 		    		li.appendChild(div2);
 		    		div2.appendChild(p2);
 		    		p2.innerHTML=data[i].context;
+					p1.innerHTML="28大杠官方";
 		    		li.className="userList";
 					div1.className="userInfo";
 					div11.className="userPic";
