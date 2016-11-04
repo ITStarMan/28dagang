@@ -10,24 +10,23 @@
 <link rel="stylesheet" type="text/css" href="../style/index.css">
 <link rel="stylesheet" type="text/css" href="../style/head.css">
 <style type="text/css">
-	/*用户信息*/
-   .textUl{padding:0 .1rem;}
-	.userList{
-      background:#fff;
-      margin-top:.1rem;
-      padding-top:.1rem;
-      border-radius:.1rem;
-      -webkit-box-shadow:5px 5px 5px rgba(0,0,0,0.2);
-      -moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
-      box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
-   }
-	.userList:last-child{margin-bottom:.1rem;}
-	.userInfo{height:.4rem;line-height:.4rem;}
-	.userPic{width:.4rem;height:.4rem;border-radius:.4rem;margin-left:.2rem;overflow:hidden;float:left;}
-	.userPic>img{vertical-align:top;}
-	.userName{font-size:.16rem;margin-left:.2rem;float:left;}
-	/*用户留言*/
-	.userText{padding:.1rem .2rem;font-size:.16rem;}
+	.textUl{
+		margin-top:.1rem;
+	}
+	.textUl li{
+		width: 90%;
+		margin-left: 5%;
+		background: #fff;
+		height: .3rem;
+		line-height: .3rem;
+		border-radius: .1rem;
+		text-align: center;
+		margin-bottom:.1rem;
+		font-size: .16rem;
+		-webkit-box-shadow:5px 5px 5px rgba(0,0,0,0.2);
+		-moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+		box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+	}
 </style>
 </head>
 <body>
@@ -41,10 +40,10 @@
    	</header>
    	<section class="top">
    		<ul class="link clx">
-   			<li class="linkList"><a href="" class="action">热门</a></li>
+   			<li class="linkList"><a href="../hotText/hotText.html">热门</a></li>
    			<li class="linkList"><a href="../hotImg/hotImg.html">热图</a></li>
    			<li class="linkList"><a href="../car/carNews.html">汽车</a></li>
-   			<li class="linkList"><a href="../cartoon/cartoon.html">漫画</a></li>
+   			<li class="linkList"><a href="" class="action">漫画</a></li>
    			<li class="linkList"><a href="../messageBoard/messageBoard.html">留言</a></li>
    		</ul>
    	</section>
@@ -56,7 +55,7 @@
 </body>
 <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="../js/btnCheck.js"></script>
-<script>		
+<script>
 	var ul=document.getElementById("oUl");
 	var page=1;
 	function showList(page){
@@ -70,27 +69,11 @@
 		    success:function(data){
 		    	for(var i=0;i<data.length;i++){
 		    		var li=document.createElement("li");
-		    		var div1=document.createElement("div");
-		    		var div11=document.createElement("div");
-		    		var img=document.createElement("img");
-		    		var p1=document.createElement("p");
-		    		var div2=document.createElement("div");
-		    		var p2=document.createElement("p");
+		    		var a1=document.createElement("a");
 		    		ul.appendChild(li);
-		    		li.appendChild(div1);
-		    		div1.appendChild(div11);
-		    		div11.appendChild(img);
-		    		div1.appendChild(p1);
-		    		li.appendChild(div2);
-		    		div2.appendChild(p2);
-		    		p2.innerHTML=data[i].context;
-					p1.innerHTML="28大杠官方";
-		    		li.className="userList";
-					div1.className="userInfo";
-					div11.className="userPic";
-					img.setAttribute('src','../images/user.jpg');
-					p1.className="userName";
-					div2.className="userText";
+		    		li.appendChild(a1);
+		    		a1.innerHTML=data[i].title;
+					a1.setAttribute('href',data[i].url);
 		    	}
 		    },
 		});

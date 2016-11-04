@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>   
+<meta charset="utf-8">   
+<title>发表漫画</title>   
+<style type="text/css">
+	#oDiv{
+		text-align:center;
+		margin-top:100px;
+	}
+	#oDiv>div{
+		margin-bottom:20px;
+	}
+</style>
+</head>
+<body>
+    <div id="oDiv">
+    	<div>
+    		<label>文章标题：</label>
+    		<input type="text" name="tt" id="tt" />
+    	</div>
+    	<div>
+    		<label>链接地址：</label>
+    		<input type="text" name="url" id="url" />
+    	</div>
+        <div>标题：麦拉风—婚后80 第n章</div>
+    	<div>链接地址格式为cartoonList/m*/index.html</div>
+    	<input type="button" value="发布" id="commit" />
+    </div>
+</body>
+<script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    var title=document.getElementById("tt");
+    var url=document.getElementById("url");
+    var commit=document.getElementById("commit");
+    commit.onclick=function(){
+        $.ajax({
+            url:'api/sendImg.php',
+            type:'GET',
+            dataType:'text',
+            data:{
+                tt:tt.value,
+                url:url.value
+            },
+            success:function(data){
+                if(data=="true"){
+                    alert("发表成功！");
+                    location.href="sendImg.html";
+                }else if(data=="false"){
+                    alert("发表失败，请重试！");
+                    location.href="sendImg.html";
+                }
+            },
+        });
+    }
+</script>
+</html>

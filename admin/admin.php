@@ -39,5 +39,6 @@
 	?>
 	<a href="send/sendCar.html">发布汽车文章</a>
 	<a href="send/sendText.html">发布热门文章</a>
+	<a href="send/sendImg.html">发布漫画</a>
 </body>
 </html>
