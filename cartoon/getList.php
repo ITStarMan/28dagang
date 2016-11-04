@@ -3,7 +3,7 @@ header("content-type:text/html;charset=utf-8");
 include("../api/mysql.php");
 
 $page=isset($_GET['page'])?intval($_GET['page']):1; 
-$num=10;
+$num=20;
 $total=mysql_num_rows(mysql_query("select * from cartoon"));
 $pagenum=ceil($total/$num);
 If($page>$pagenum || $page == 0){
